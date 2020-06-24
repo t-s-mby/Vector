@@ -1,18 +1,29 @@
 #include "vector.h"
+#include "gtest/gtest.h"
+
+TEST(VectorTests, EmptyVector)
+{
+    Vector<int> v;
+    ASSERT_TRUE(v.empty());
+}
+
+TEST(VectorTests, PushOneToVector)
+{
+    Vector<int> v;
+    EXPECT_TRUE(v.empty());
+    v.push_back(5);
+    ASSERT_FALSE(v.empty());
+}
+
+TEST(VectorTests, PushesAndPops)
+{
+    Vector<int> v(2,3);
+    Vector<int> v2(v);
+    v2.swap(v);
+    ASSERT_EQ(v.data(),v2.data());
+}
 
 int main()
 {
-    Vector<int> vector(2,5);
-    std::cout<<vector.back()<<std::endl;
-    vector.resize(8,7);
-    //std::cout<<vector.back()<<std::endl;
-    int * p = vector.data();
-    for(size_t i=0; i<vector.size(); i++)
-        std::cout<<p[i]<<' ';
-    std::cout<<vector.capacity()<<std::endl;
-    vector.insert(2,16,8);
-    std::cout<<vector.capacity()<<std::endl;
-    int * p2 = vector.data();
-    for(size_t i=0; i<vector.size(); i++)
-        std::cout<<p2[i]<<' ';
+    return 0;
 }
